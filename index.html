@@ -20,7 +20,7 @@
         .form-group input { width: 100%; padding: 12px; border-radius: 5px; border: 1px solid #0f3460; background: #0f3460; color: white; box-sizing: border-box; }
         .btn-submit { width: 100%; padding: 12px; background-color: #e94560; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
         .toggle-link { text-align: center; margin-top: 20px; font-size: 0.9rem; color: #999; }
-        .toggle-link a { color: #e94560; cursor: pointer; }
+        .toggle-link a { color: #e94560; cursor: pointer; text-decoration: none; }
 
         /* --- LIBRARY CATALOG --- */
         #library-catalog, #admin-view { padding: 40px 5%; display: none; }
@@ -36,11 +36,9 @@
         .admin-table-container { overflow-x: auto; background: #16213e; border-radius: 12px; padding: 20px; }
         table { width: 100%; border-collapse: collapse; text-align: left; }
         th, td { padding: 15px; border-bottom: 1px solid #0f3460; }
-        th { color: #e94560; font-size: 0.8rem; }
         .status-badge { padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; }
         .pending { background: #f39c12; }
         .verified { background: #2ecc71; }
-        .action-btn { background: #0f3460; border: 1px solid #999; color: white; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -67,34 +65,39 @@
         </form>
         <div class="toggle-link">
             <span id="toggle-text">Don't have an account?</span> <a id="switchAuth">Sign Up</a><br><br>
-            <a id="forgotPass" style="font-size: 0.8rem;">Forgot Password?</a>
+            <a id="forgotPass">Forgot Password?</a>
         </div>
     </div>
 </div>
 
 <div id="library-catalog">
     <div style="text-align: center; margin-bottom: 40px;">
-        <h2>Order Your Materials</h2>
-        <p>Pay via Till Number <strong>4449442</strong> before completing order.</p>
+        <h2>Kiswahili & Geography Department</h2>
+        <p>Lipa na M-PESA Till: <strong>4449442</strong></p>
     </div>
     <div class="book-grid">
-        <div class="book-card"><span class="book-icon">📘</span><h3>Physics Grade 10</h3><p>Complete Syllabus</p><div class="qty-container">Qty: <input type="number" class="qty-input" value="1" min="1"></div><button class="order-btn">Order & Pay</button></div>
-        <div class="book-card"><span class="book-icon">📙</span><h3>Modern Biology</h3><p>Practical Guide</p><div class="qty-container">Qty: <input type="number" class="qty-input" value="1" min="1"></div><button class="order-btn">Order & Pay</button></div>
-        <div class="book-card"><span class="book-icon">📗</span><h3>Advanced Maths</h3><p>Algebra/Calculus</p><div class="qty-container">Qty: <input type="number" class="qty-input" value="1" min="1"></div><button class="order-btn">Order & Pay</button></div>
-        <div class="book-card"><span class="book-icon">📕</span><h3>Chemistry G11</h3><p>Lab Manual</p><div class="qty-container">Qty: <input type="number" class="qty-input" value="1" min="1"></div><button class="order-btn">Order & Pay</button></div>
+        <div class="book-card"><span class="book-icon">📖</span><h3>Kiswahili Kidato cha 1</h3><p>Misingi ya Lugha</p><div class="qty-container">Qty: <input type="number" class="qty-input" value="1" min="1"></div><button class="order-btn">Order & Pay</button></div>
+        <div class="book-card"><span class="book-icon">✍️</span><h3>Fasihi: Chozi la Heri</h3><p>Riwaya Iliyoteuliwa</p><div class="qty-container">Qty: <input type="number" class="qty-input" value="1" min="1"></div><button class="order-btn">Order & Pay</button></div>
+        <div class="book-card"><span class="book-icon">📜</span><h3>Kigogo</h3><p>Tamthilia</p><div class="qty-container">Qty: <input type="number" class="qty-input" value="1" min="1"></div><button class="order-btn">Order & Pay</button></div>
+        <div class="book-card"><span class="book-icon">📚</span><h3>Insha na Sarufi</h3><p>Mwongozo wa Kanda</p><div class="qty-container">Qty: <input type="number" class="qty-input" value="1" min="1"></div><button class="order-btn">Order & Pay</button></div>
+        
+        <div class="book-card"><span class="book-icon">🌍</span><h3>Geography Form 1</h3><p>Physical Geography</p><div class="qty-container">Qty: <input type="number" class="qty-input" value="1" min="1"></div><button class="order-btn">Order & Pay</button></div>
+        <div class="book-card"><span class="book-icon">🗺️</span><h3>Map Work Revision</h3><p>Practical Techniques</p><div class="qty-container">Qty: <input type="number" class="qty-input" value="1" min="1"></div><button class="order-btn">Order & Pay</button></div>
+        <div class="book-card"><span class="book-icon">🌡️</span><h3>Climate & Weather</h3><p>Global Systems</p><div class="qty-container">Qty: <input type="number" class="qty-input" value="1" min="1"></div><button class="order-btn">Order & Pay</button></div>
+        <div class="book-card"><span class="book-icon">🌋</span><h3>Earth Movements</h3><p>Secondary Geography</p><div class="qty-container">Qty: <input type="number" class="qty-input" value="1" min="1"></div><button class="order-btn">Order & Pay</button></div>
     </div>
 </div>
 
 <div id="admin-view">
-    <h2 style="text-align: center;">Orders Received (Till: 4449442)</h2>
+    <h2 style="text-align: center;">Incoming Orders Tracking</h2>
     <div class="admin-table-container">
         <table>
             <thead>
                 <tr>
                     <th>User</th>
-                    <th>Book</th>
+                    <th>Resource</th>
                     <th>Qty</th>
-                    <th>M-PESA Code</th>
+                    <th>Transaction Code</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -109,6 +112,7 @@
     import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
     import { getFirestore, collection, addDoc, serverTimestamp, query, onSnapshot, orderBy, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+    // YOUR REGISTERED CONFIG
     const firebaseConfig = {
         apiKey: "AIzaSyBtMm3LcHUI-i_Sw6L3o2wYaY1OcAbKY5A",
         authDomain: "daisy-teituk-library.firebaseapp.com",
@@ -127,10 +131,12 @@
     const authForm = document.getElementById('authForm'), switchAuth = document.getElementById('switchAuth'),
           authTitle = document.getElementById('auth-title'), submitBtn = document.getElementById('submitBtn'),
           logoutBtn = document.getElementById('logoutBtn'), loginView = document.getElementById('login-view'),
-          studentView = document.getElementById('library-catalog'), adminView = document.getElementById('admin-view');
+          studentView = document.getElementById('library-catalog'), adminView = document.getElementById('admin-view'),
+          forgotPass = document.getElementById('forgotPass');
 
     let isSignUp = false;
 
+    // --- TOGGLE AUTH ---
     switchAuth.onclick = () => {
         isSignUp = !isSignUp;
         authTitle.innerText = isSignUp ? "Create Account" : "Sign In";
@@ -138,6 +144,16 @@
         switchAuth.innerText = isSignUp ? "Sign In" : "Sign Up";
     };
 
+    // --- FORGOT PASSWORD (FIREBASE TEMPLATE) ---
+    forgotPass.onclick = () => {
+        const email = document.getElementById('email').value;
+        if (!email) return alert("Please type your email address first.");
+        sendPasswordResetEmail(auth, email)
+            .then(() => alert("Reset link sent! Please check your email inbox."))
+            .catch(e => alert(e.message));
+    };
+
+    // --- LOGIN/SIGNUP ---
     authForm.onsubmit = (e) => {
         e.preventDefault();
         const em = document.getElementById('email').value, ps = document.getElementById('password').value;
@@ -147,36 +163,29 @@
 
     logoutBtn.onclick = () => signOut(auth);
 
-    // --- ORDER & PAYMENT LOGIC ---
+    // --- ORDER & PAYMENT PROCESS ---
     document.addEventListener('click', async (e) => {
         if(e.target.classList.contains('order-btn')) {
             const card = e.target.parentElement;
             const book = card.querySelector('h3').innerText;
             const qty = card.querySelector('.qty-input').value;
+            const code = prompt(`M-PESA TILL: 4449442\nResource: ${book}\nQty: ${qty}\n\nEnter M-PESA Confirmation Code:`);
             
-            const mpesaCode = prompt(`ORDER SUMMARY:\nItem: ${book}\nUnits: ${qty}\n\nPAYMENT INSTRUCTIONS:\n1. Pay via Till: 4449442\n2. Paste the M-PESA Confirmation Code below:`);
-            
-            if(mpesaCode) {
-                try {
-                    await addDoc(collection(db, "orders"), {
-                        user: auth.currentUser.email,
-                        book: book,
-                        qty: parseInt(qty),
-                        mpesaCode: mpesaCode.toUpperCase(),
-                        status: "Pending",
-                        at: serverTimestamp()
-                    });
-                    alert("Order placed! We will verify payment code: " + mpesaCode);
-                } catch(e) { alert("Database error."); }
+            if(code) {
+                await addDoc(collection(db, "orders"), {
+                    user: auth.currentUser.email,
+                    book: book,
+                    qty: parseInt(qty),
+                    mpesaCode: code.toUpperCase(),
+                    status: "Pending",
+                    at: serverTimestamp()
+                });
+                alert("Order recorded for verification.");
             }
         }
     });
 
-    window.toggleStatus = async (id, cur) => {
-        const next = cur === "Pending" ? "Verified" : "Pending";
-        await updateDoc(doc(db, "orders", id), { status: next });
-    };
-
+    // --- ADMIN LOAD DATA ---
     function fetchOrders() {
         const q = query(collection(db, "orders"), orderBy("at", "desc"));
         onSnapshot(q, (snap) => {
@@ -188,14 +197,20 @@
                     <td>${o.user}</td>
                     <td>${o.book}</td>
                     <td>${o.qty}</td>
-                    <td><strong>${o.mpesaCode}</strong></td>
+                    <td>${o.mpesaCode}</td>
                     <td><span class="status-badge ${o.status.toLowerCase()}">${o.status}</span></td>
-                    <td><button class="action-btn" onclick="toggleStatus('${d.id}', '${o.status}')">Verify</button></td>
+                    <td><button onclick="updateStatus('${d.id}', '${o.status}')">Verify</button></td>
                 </tr>`;
             });
         });
     }
 
+    window.updateStatus = async (id, cur) => {
+        const next = cur === "Pending" ? "Verified" : "Pending";
+        await updateDoc(doc(db, "orders", id), { status: next });
+    };
+
+    // --- AUTH OBSERVER ---
     onAuthStateChanged(auth, (u) => {
         if(u) {
             loginView.style.display = 'none'; logoutBtn.style.display = 'block';
