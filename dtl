@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daisy Teituk Library | Dashboard</title>
+    <style>
+        :root {
+            --primary-blue: #007bff;
+            --success-green: #28a745;
+            --dark-bg: #20202a;
+            --card-bg: #ffffff; /* Switched to white for better readability */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--dark-bg);
+            color: #333;
+        }
+
+        header {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 12px 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 45px;
+            height: 45px;
+            background-color: white;
+            border-radius: 8px; /* Slightly squared for a modern look */
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .dashboard-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding: 20px;
+        }
+
+        .sign-in-card {
+            background-color: var(--card-bg);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .info-box {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--success-green);
+        }
+
+        .info-box p {
+            margin: 5px 0;
+            font-size: 0.85em;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .updates-section {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .updates-section button {
+            width: auto;
+            padding: 5px 12px;
+            background-color: #ffc107; /* Brighter gold for "Updates" */
+            border: none;
+            border-radius: 20px;
+            margin-left: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        h2 { text-align: center; margin-bottom: 20px; color: #222; }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .submit-btn {
+            background-color: var(--success-green);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: #218838;
+            transform: translateY(-1px);
+        }
+
+        .link-text { text-align: center; margin-top: 20px; font-size: 0.85em; }
+        .link-text a { color: var(--primary-blue); text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">DTL</div>
+        <h1>DAISY TEITUK LIBRARY</h1>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="sign-in-card">
+            <div class="info-box">
+                <p><strong>Vision:</strong> To be the leading reliable supplier of equipment across schools.</p>
+                <p><strong>Mission:</strong> Efficiency and reliability.</p>
+            </div>
+            
+            <div class="updates-section">
+                <span>Pre-order Materials </span>
+                <button>Updates 🔔</button>
+            </div>
+
+            <h2>Member Sign In</h2>
+
+            <form action="/login-handler" method="POST"> <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="password">Password</label> 
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                
+                <button type="submit" class="submit-btn">Sign in</button>
+            </form>
+            
+            <div class="link-text">
+                Don't have an account? <a href="#">Create an Account</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
