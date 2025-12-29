@@ -5,165 +5,207 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daisy Teituk Library | Dashboard</title>
     <style>
-        :root {
-            --primary-blue: #007bff;
-            --success-green: #28a745;
-            --dark-bg: #20202a;
-            --card-bg: #ffffff; /* Switched to white for better readability */
-        }
+        /* --- GLOBAL STYLES --- */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #1a1a2e; color: #ffffff; line-height: 1.6; }
+        header { background-color: #0f3460; padding: 15px 30px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); position: sticky; top: 0; z-index: 1000; }
+        .logo-circle { width: 45px; height: 45px; background-color: #e94560; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; }
+        header h1 { margin: 0; font-size: 1.5rem; text-transform: uppercase; }
+        #logoutBtn { background-color: #e94560; color: white; border: none; padding: 8px 18px; border-radius: 5px; cursor: pointer; display: none; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            background-color: var(--dark-bg);
-            color: #333;
-        }
+        /* --- AUTH SECTION --- */
+        .auth-container { display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 20px; }
+        .auth-card { background-color: #16213e; padding: 40px; border-radius: 15px; width: 100%; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-top: 5px solid #e94560; }
+        .vision-mission { background: rgba(233, 69, 96, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 25px; font-size: 0.85rem; border-left: 3px solid #e94560; }
+        .form-group { margin-bottom: 20px; }
+        .form-group input { width: 100%; padding: 12px; border-radius: 5px; border: 1px solid #0f3460; background: #0f3460; color: white; box-sizing: border-box; }
+        .btn-submit { width: 100%; padding: 12px; background-color: #e94560; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
+        .toggle-link { text-align: center; margin-top: 20px; font-size: 0.9rem; color: #999; }
+        .toggle-link a { color: #e94560; cursor: pointer; }
 
-        header {
-            background-color: var(--primary-blue);
-            color: white;
-            padding: 12px 25px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-        }
+        /* --- LIBRARY CATALOG --- */
+        #library-catalog, #admin-view { padding: 40px 5%; display: none; }
+        .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; }
+        .book-card { background-color: #16213e; padding: 25px; border-radius: 12px; text-align: center; border: 1px solid transparent; transition: 0.3s; }
+        .book-card:hover { border-color: #e94560; transform: translateY(-5px); }
+        .book-icon { font-size: 3rem; margin-bottom: 15px; display: block; }
+        .qty-container { margin: 15px 0; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .qty-input { width: 60px; padding: 8px; border-radius: 4px; border: none; background: #0f3460; color: white; text-align: center; }
+        .order-btn { background: #e94560; color: white; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; }
 
-        .logo {
-            width: 45px;
-            height: 45px;
-            background-color: white;
-            border-radius: 8px; /* Slightly squared for a modern look */
-            margin-right: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--primary-blue);
-        }
-
-        .dashboard-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 80vh;
-            padding: 20px;
-        }
-
-        .sign-in-card {
-            background-color: var(--card-bg);
-            padding: 35px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            width: 100%;
-            max-width: 380px;
-        }
-
-        .info-box {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            border-left: 5px solid var(--success-green);
-        }
-
-        .info-box p {
-            margin: 5px 0;
-            font-size: 0.85em;
-            color: #555;
-            line-height: 1.4;
-        }
-
-        .updates-section {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
-        }
-
-        .updates-section button {
-            width: auto;
-            padding: 5px 12px;
-            background-color: #ffc107; /* Brighter gold for "Updates" */
-            border: none;
-            border-radius: 20px;
-            margin-left: 8px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        h2 { text-align: center; margin-bottom: 20px; color: #222; }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            font-size: 0.9em;
-        }
-
-        input[type="email"], input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            box-sizing: border-box;
-        }
-
-        .submit-btn {
-            background-color: var(--success-green);
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: bold;
-            width: 100%;
-            transition: transform 0.2s;
-        }
-
-        .submit-btn:hover {
-            background-color: #218838;
-            transform: translateY(-1px);
-        }
-
-        .link-text { text-align: center; margin-top: 20px; font-size: 0.85em; }
-        .link-text a { color: var(--primary-blue); text-decoration: none; font-weight: bold; }
+        /* --- ADMIN PANEL --- */
+        .admin-table-container { overflow-x: auto; background: #16213e; border-radius: 12px; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th, td { padding: 15px; border-bottom: 1px solid #0f3460; }
+        th { color: #e94560; font-size: 0.8rem; }
+        .status-badge { padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; }
+        .pending { background: #f39c12; }
+        .verified { background: #2ecc71; }
+        .action-btn { background: #0f3460; border: 1px solid #999; color: white; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">DTL</div>
-        <h1>DAISY TEITUK LIBRARY</h1>
-    </header>
 
-    <div class="dashboard-container">
-        <div class="sign-in-card">
-            <div class="info-box">
-                <p><strong>Vision:</strong> To be the leading reliable supplier of equipment across schools.</p>
-                <p><strong>Mission:</strong> Efficiency and reliability.</p>
-            </div>
-            
-            <div class="updates-section">
-                <span>Pre-order Materials </span>
-                <button>Updates 🔔</button>
-            </div>
+<header>
+    <div style="display: flex; align-items: center;">
+        <div class="logo-circle">DTL</div>
+        <h1 id="header-title">Daisy Teituk Library</h1>
+    </div>
+    <button id="logoutBtn">Log Out</button>
+</header>
 
-            <h2>Member Sign In</h2>
-
-            <form action="/login-handler" method="POST"> <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-
-                <label for="password">Password</label> 
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                
-                <button type="submit" class="submit-btn">Sign in</button>
-            </form>
-            
-            <div class="link-text">
-                Don't have an account? <a href="#">Create an Account</a>
-            </div>
+<div id="login-view" class="auth-container">
+    <div class="auth-card">
+        <div class="vision-mission">
+            <strong>Vision:</strong> Leading reliable supplier of school equipment.<br>
+            <strong>Mission:</strong> Efficiency and reliability.
+        </div>
+        <h2 id="auth-title">Sign In</h2>
+        <form id="authForm">
+            <div class="form-group"><input type="email" id="email" placeholder="Email" required></div>
+            <div class="form-group"><input type="password" id="password" placeholder="Password" required></div>
+            <button type="submit" class="btn-submit" id="submitBtn">Sign In</button>
+        </form>
+        <div class="toggle-link">
+            <span id="toggle-text">Don't have an account?</span> <a id="switchAuth">Sign Up</a><br><br>
+            <a id="forgotPass" style="font-size: 0.8rem;">Forgot Password?</a>
         </div>
     </div>
+</div>
+
+<div id="library-catalog">
+    <div style="text-align: center; margin-bottom: 40px;">
+        <h2>Order Your Materials</h2>
+        <p>Pay via Till Number <strong>4449442</strong> before completing order.</p>
+    </div>
+    <div class="book-grid">
+        <div class="book-card"><span class="book-icon">📘</span><h3>Physics Grade 10</h3><p>Complete Syllabus</p><div class="qty-container">Qty: <input type="number" class="qty-input" value="1" min="1"></div><button class="order-btn">Order & Pay</button></div>
+        <div class="book-card"><span class="book-icon">📙</span><h3>Modern Biology</h3><p>Practical Guide</p><div class="qty-container">Qty: <input type="number" class="qty-input" value="1" min="1"></div><button class="order-btn">Order & Pay</button></div>
+        <div class="book-card"><span class="book-icon">📗</span><h3>Advanced Maths</h3><p>Algebra/Calculus</p><div class="qty-container">Qty: <input type="number" class="qty-input" value="1" min="1"></div><button class="order-btn">Order & Pay</button></div>
+        <div class="book-card"><span class="book-icon">📕</span><h3>Chemistry G11</h3><p>Lab Manual</p><div class="qty-container">Qty: <input type="number" class="qty-input" value="1" min="1"></div><button class="order-btn">Order & Pay</button></div>
+    </div>
+</div>
+
+<div id="admin-view">
+    <h2 style="text-align: center;">Orders Received (Till: 4449442)</h2>
+    <div class="admin-table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Book</th>
+                    <th>Qty</th>
+                    <th>M-PESA Code</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="admin-orders-list"></tbody>
+        </table>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, serverTimestamp, query, onSnapshot, orderBy, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBtMm3LcHUI-i_Sw6L3o2wYaY1OcAbKY5A",
+        authDomain: "daisy-teituk-library.firebaseapp.com",
+        projectId: "daisy-teituk-library",
+        storageBucket: "daisy-teituk-library.firebasestorage.app",
+        messagingSenderId: "255743286704",
+        appId: "1:255743286704:web:e96f8adb50fc5891ac8a75",
+        measurementId: "G-FLJ8GQNGNF"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const ADMIN_EMAIL = "coachrono@gmail.com"; 
+
+    const authForm = document.getElementById('authForm'), switchAuth = document.getElementById('switchAuth'),
+          authTitle = document.getElementById('auth-title'), submitBtn = document.getElementById('submitBtn'),
+          logoutBtn = document.getElementById('logoutBtn'), loginView = document.getElementById('login-view'),
+          studentView = document.getElementById('library-catalog'), adminView = document.getElementById('admin-view');
+
+    let isSignUp = false;
+
+    switchAuth.onclick = () => {
+        isSignUp = !isSignUp;
+        authTitle.innerText = isSignUp ? "Create Account" : "Sign In";
+        submitBtn.innerText = isSignUp ? "Sign Up" : "Sign In";
+        switchAuth.innerText = isSignUp ? "Sign In" : "Sign Up";
+    };
+
+    authForm.onsubmit = (e) => {
+        e.preventDefault();
+        const em = document.getElementById('email').value, ps = document.getElementById('password').value;
+        if(isSignUp) createUserWithEmailAndPassword(auth, em, ps).catch(a => alert(a.message));
+        else signInWithEmailAndPassword(auth, em, ps).catch(a => alert(a.message));
+    };
+
+    logoutBtn.onclick = () => signOut(auth);
+
+    // --- ORDER & PAYMENT LOGIC ---
+    document.addEventListener('click', async (e) => {
+        if(e.target.classList.contains('order-btn')) {
+            const card = e.target.parentElement;
+            const book = card.querySelector('h3').innerText;
+            const qty = card.querySelector('.qty-input').value;
+            
+            const mpesaCode = prompt(`ORDER SUMMARY:\nItem: ${book}\nUnits: ${qty}\n\nPAYMENT INSTRUCTIONS:\n1. Pay via Till: 4449442\n2. Paste the M-PESA Confirmation Code below:`);
+            
+            if(mpesaCode) {
+                try {
+                    await addDoc(collection(db, "orders"), {
+                        user: auth.currentUser.email,
+                        book: book,
+                        qty: parseInt(qty),
+                        mpesaCode: mpesaCode.toUpperCase(),
+                        status: "Pending",
+                        at: serverTimestamp()
+                    });
+                    alert("Order placed! We will verify payment code: " + mpesaCode);
+                } catch(e) { alert("Database error."); }
+            }
+        }
+    });
+
+    window.toggleStatus = async (id, cur) => {
+        const next = cur === "Pending" ? "Verified" : "Pending";
+        await updateDoc(doc(db, "orders", id), { status: next });
+    };
+
+    function fetchOrders() {
+        const q = query(collection(db, "orders"), orderBy("at", "desc"));
+        onSnapshot(q, (snap) => {
+            const list = document.getElementById('admin-orders-list');
+            list.innerHTML = "";
+            snap.forEach(d => {
+                const o = d.data();
+                list.innerHTML += `<tr>
+                    <td>${o.user}</td>
+                    <td>${o.book}</td>
+                    <td>${o.qty}</td>
+                    <td><strong>${o.mpesaCode}</strong></td>
+                    <td><span class="status-badge ${o.status.toLowerCase()}">${o.status}</span></td>
+                    <td><button class="action-btn" onclick="toggleStatus('${d.id}', '${o.status}')">Verify</button></td>
+                </tr>`;
+            });
+        });
+    }
+
+    onAuthStateChanged(auth, (u) => {
+        if(u) {
+            loginView.style.display = 'none'; logoutBtn.style.display = 'block';
+            document.getElementById('header-title').innerText = `DTL | ${u.email.split('@')[0]}`;
+            if(u.email === ADMIN_EMAIL) { adminView.style.display = 'block'; studentView.style.display = 'none'; fetchOrders(); }
+            else { studentView.style.display = 'block'; adminView.style.display = 'none'; }
+        } else {
+            loginView.style.display = 'flex'; studentView.style.display = 'none'; adminView.style.display = 'none'; logoutBtn.style.display = 'none';
+        }
+    });
+</script>
 </body>
 </html>
